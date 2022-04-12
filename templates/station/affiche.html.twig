@@ -1,0 +1,106 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+    Liste Station
+{% endblock %}
+
+{% block content %}
+
+    <div class="main-panel">
+
+        <div style="text-align:center">
+            <h1>Liste Stations</h1>
+        </div>
+        <form method="post" action="{{ path('recherchest') }}">
+            <input type="text"  placeholder="Recherche" name ="recherche ">
+            <input type="submit" value="recherche stations"  class="btn btn-primary" >
+
+        </form>
+
+        <form method="post" action="{{ path('ajoutst') }}">
+
+            <input type="submit" value="Ajouter Une Station"  class="btn btn-primary" >
+
+        </form>
+
+        <table border="2" class="table table-striped">
+
+            <tr>
+                <th>Id</th>
+                <th>Gouv</th>
+                <th>Ss</th>
+                <th>Adresse</th>
+                <th>Localite</th>
+                <th>Longitude</th>
+                <th>Latitude</th>
+                <th>Supprimer</th>
+                <th>Modifier</th>
+
+            </tr>
+
+            <tr {% for e in station %} >
+
+                <td>{{ e.id }}</td>
+                <td>{{ e.gouv }}</td>
+                <td>{{ e.ss }}</td>
+                <td>{{ e.adresse }}</td>
+                <td>{{ e.localite }}</td>
+                <td>{{ e.longitude}}</td>
+                <td>{{ e.latitude }}</td>
+
+                <td >
+
+
+
+                    <!-- Button trigger modal -->
+                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+                        Supprimer
+                    </button>
+
+                    <!-- Modal -->
+                    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="exampleModalLabel">Suppression</h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body">
+
+                                    vous voulez vraiment supprimer cette station ?
+
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal" >Fermer</button>
+                                    <button type="button" class="btn btn-primary" >
+
+                                        <a href="{{ path('supprimest',{'id':e.id}) }}"  >Supprimer</a>
+
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </td>
+
+                <td ><a href="{{ path('modifiest',{'id':e.id}) }}"  class="btn btn-primary">Modifier</a></td>
+
+
+
+            </tr {% endfor %} >
+
+
+
+
+        </table>
+
+        <div class="pagination justify-content-center">
+            {{  knp_pagination_render(station) }}
+
+        </div>
+
+    </div>
+{% endblock %}

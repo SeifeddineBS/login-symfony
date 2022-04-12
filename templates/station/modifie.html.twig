@@ -1,0 +1,102 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+    Modifier Station
+{% endblock %}
+
+{% block content %}
+
+    {{ form_start(form) }}
+
+    <div class="main-panel">
+        <h1>Modifier Station</h1>
+
+
+        <div class="form-group">
+
+            <LABEL>Gouvernerat*:</LABEL>
+            {{ form_widget(form.gouv, {'attr':{'class':'form-control' }})}}
+
+        </div>
+
+        <div class="form-group">
+
+            <LABEL>Ss*:</LABEL>
+            {{ form_widget(form.ss, {'attr':{'class':'form-control' }})}}
+
+        </div>
+
+        <div class="form-group">
+
+            <LABEL>Adresse*:</LABEL>
+            {{ form_widget(form.adresse, {'attr':{'class':'form-control' }})}}
+
+        </div>
+
+        <div class="form-group">
+
+            <LABEL>Localite*:</LABEL>
+            {{ form_widget(form.localite, {'attr':{'class':'form-control' }})}}
+
+        </div>
+
+        <div class="form-group">
+
+            <LABEL>Longitude*:</LABEL>
+            {{ form_widget(form.longitude, {'attr':{'class':'form-control' }})}}
+
+        </div>
+
+        <div class="form-group">
+
+            <LABEL>Latitude*:</LABEL>
+            {{ form_widget(form.latitude, {'attr':{'class':'form-control' }})}}
+
+        </div>
+
+        {#   <div class="form-group">
+        <label>Libelle</label>
+        <input type="text" class="form-control" id="libelle" placeholder="Entrez le libelle de la categorie">
+    </div>#}
+
+
+        <!-- Button trigger modal -->
+        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+            Modifier
+        </button>
+
+        <!-- Modal -->
+        <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Modification</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+
+                        vous voulez vraiment modifier cette station ?
+
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal" >Fermer</button>
+                        <button type="submit" class="btn btn-primary" >
+
+                            {#  <input type="submit" value="Modifier Service" class="btn btn-primary">  #}
+                            Modifier Station
+
+                        </button>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    {{ form_end(form) }}
+
+
+
+{% endblock %}

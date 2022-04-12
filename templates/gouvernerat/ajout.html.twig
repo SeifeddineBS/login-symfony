@@ -1,0 +1,45 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+    Ajouter Gouvernerat
+{% endblock %}
+
+{% block content %}
+    {{ form_start(form , {attr: {'novalidate': 'novalidate'}} ) }}
+    <div class="main-panel">
+        <h1>Ajouter Un gouvernerat</h1>
+
+        <div class="form-group">
+
+            <LABEL>Code*:</LABEL>
+            {{ form_widget(form.code, {'attr':{'class':'form-control' }})}}
+
+            <div class="alert alert-warning" role="alert">
+                {{form_errors(form.code)}}
+            </div>
+
+        </div>
+
+        <div class="form-group">
+
+            <LABEL>Nom*:</LABEL>
+            {{ form_widget(form.nom, {'attr':{'class':'form-control' }})}}
+
+            <div class="alert alert-warning" role="alert">
+                {{form_errors(form.nom)}}
+            </div>
+
+        </div>
+
+
+        <input type="submit" value="Ajouter Gouvernerat" class="btn btn-danger">
+        <a href="{{ path('afficheg') }}"><input type="button" value="Liste Des Gouvernerats" class="btn btn-danger"></a>
+    </div>
+
+
+    {{ form_end(form) }}
+
+
+
+
+{% endblock %}

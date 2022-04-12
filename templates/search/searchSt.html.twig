@@ -1,0 +1,64 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Liste Station{% endblock %}
+
+{% block content %}
+
+    <div class="main-panel">
+
+        <h1>Liste Station</h1>
+
+        <form method="post" action="#">
+            <input type="text"  placeholder="Recherche" name ="recherche">
+            <input type="submit" value="recherche"  class="btn btn-primary" >
+
+        </form>
+
+        <form method="post" action="{{ path('ajoutst') }}">
+
+            <input type="submit" value="Ajouter Une Station"  class="btn btn-primary" >
+
+        </form>
+
+        <table border="2" class="table table-striped">
+
+            <tr>
+                <th>Id</th>
+                <th>Gouv</th>
+                <th>Ss</th>
+                <th>Adresse</th>
+                <th>Localite</th>
+                <th>Longitude</th>
+                <th>Latitude</th>
+                <th>Supprimer</th>
+                <th>Modifier</th>
+
+            </tr>
+
+            <tr {% for e in station %} >
+
+                <td>{{ e.id }}</td>
+                <td>{{ e.gouv }}</td>
+                <td>{{ e.ss }}</td>
+                <td>{{ e.adresse }}</td>
+                <td>{{ e.localite }}</td>
+                <td>{{ e.longitude}}</td>
+                <td>{{ e.latitude }}</td>
+
+                <td ><a href="{{ path('supprimest',{'id':e.id}) }}"  class="badge badge-danger">Supprimer</a></td>
+
+                <td ><a href="{{ path('modifiest',{'id':e.id}) }}"  class="badge badge-danger">Modifier</a></td>
+
+
+
+            </tr {% endfor %} >
+
+
+
+
+        </table>
+
+
+
+    </div>
+{% endblock %}

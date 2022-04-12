@@ -1,0 +1,42 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+    Ajouter Service
+{% endblock %}
+
+{% block content %}
+    {{ form_start(form , {attr: {'novalidate': 'novalidate'}} ) }}
+    <div class="main-panel">
+        <h1>Ajouter Un Service</h1>
+
+
+        <div class="form-group">
+
+            <LABEL>Nom*:</LABEL>
+            {{ form_widget(form.nom, {'attr':{'class':'form-control' }})}}
+
+            <div class="alert alert-warning" role="alert">
+                {{form_errors(form.nom)}}
+            </div>
+
+        </div>
+
+
+
+
+        {#   <div class="form-group">
+        <label>Libelle</label>
+        <input type="text" class="form-control" id="libelle" placeholder="Entrez le libelle de la categorie">
+    </div>#}
+
+        <input type="submit" value="Ajouter Service" class="btn btn-danger">
+        <a href="{{ path('affiches') }}"><input type="button" value="Liste Des Services" class="btn btn-danger"></a>
+    </div>
+
+
+    {{ form_end(form) }}
+
+
+
+
+{% endblock %}

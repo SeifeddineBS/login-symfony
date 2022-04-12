@@ -1,0 +1,88 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Carte Geographique{% endblock %}
+
+{% block content %}
+
+    <div id="maCarte"></div>
+
+{% endblock %}
+
+{% block script %}
+    <script src="https://unpkg.com/leaflet@1.5.1/dist/leaflet.js" integrity="sha512-GffPMF3RvMeYyc1LWMHtK8EbPv0iNZ8/oTtHPx9/cc2ILxQ+u905qIwdpULaqDkyBKgOaB57QTMg7ztg8Jm2Og==" crossorigin=""></script>
+    <script src="https://unpkg.com/leaflet.markercluster@1.4.1/dist/leaflet.markercluster.js"></script>
+    <script>
+        var villes = {
+            "sousse route kondar": { "lat": 35.902599, "lon":
+                    10.401457  },
+
+            "sousse kondar centre ville": { "lat": 35.932220, "lon":
+                    10.300063},
+            "sousse avenue republique": { "lat": 35.831487, "lon":
+                    10.633222},
+            "sousse msaken": { "lat": 35.732382, "lon":
+                    10.574112},
+            "sousse kalaa el kebira": { "lat": 35.869034, "lon":
+                    10.550723},
+            "tataouine centre ville": { "lat": 32.931642, "lon":
+                    10.450658},
+            "tataouine bir lahmar": { "lat": 33.177564, "lon":
+                    10.442723},
+            "tozeur centre ville": { "lat": 33.923771, "lon":
+                    8.136207},
+
+            "tozeur nafta": { "lat": 33.873760, "lon":
+                    7.895107},
+            "tozeur degache": { "lat": 33.978124, "lon":
+                    8.208058},
+            "tunis av.republique": { "lat": 36.800018, "lon":
+                    10.188331},
+            "tunis al ouina": { "lat": 36.854476, "lon":
+                    10.257061},
+            "tunis gammarth": { "lat": 36.896132, "lon":
+                    10.293901},
+
+
+        };
+        var tableauMarqueurs = [];
+
+        // On initialise la carte
+        var carte = L.map('maCarte').setView([48.852969, 2.349903], 13);
+
+        // On charge les "tuiles"
+        L.tileLayer('https://{s}.tile.openstreetmap.fr/osmfr/{z}/{x}/{y}.png', {
+            // Il est toujours bien de laisser le lien vers la source des données
+            attribution: 'données © <a href="//osm.org/copyright">OpenStreetMap</a>/ODbL - rendu <a href="//openstreetmap.fr">OSM France</a>',
+            minZoom: 1,
+            maxZoom: 20
+        }).addTo(carte);
+
+        var marqueurs = L.markerClusterGroup();
+
+        // On personnalise le marqueur
+        var icone = L.icon({
+            iconUrl: "/img/icone.png",
+            iconSize: [50, 50],
+            iconAnchor: [25, 50],
+            popupAnchor: [0, -50]
+        })
+
+        // On parcourt les différentes villes
+        for(ville in villes){
+            // On crée le marqueur et on lui attribue une popup
+            var marqueur = L.marker([villes[ville].lat, villes[ville].lon], {icon: icone}); //.addTo(carte); Inutile lors de l'utilisation des clusters
+            marqueur.bindPopup("<p>"+ville+"</p>");
+            marqueurs.addLayer(marqueur); // On ajoute le marqueur au groupe
+
+            // On ajoute le marqueur au tableau
+            tableauMarqueurs.push(marqueur);
+        }
+        // On regroupe les marqueurs dans un groupe Leaflet
+        var groupe = new L.featureGroup(tableauMarqueurs);
+
+        // On adapte le zoom au groupe
+        carte.fitBounds(groupe.getBounds().pad(0.5));
+
+        carte.addLayer(marqueurs);
+    </script>
+{% endblock %}

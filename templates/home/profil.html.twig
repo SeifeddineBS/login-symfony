@@ -1,0 +1,36 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+    profil
+{% endblock %}
+
+{% block content %}
+
+<form  class="boxx">
+
+<h1>Profil Admin Connecte</h1>
+
+        {% if app.user %}
+
+    <p><strong>Username: </strong> {{ app.user.username }} </p>
+            <p><strong>Age: </strong> {{ app.user.age}} </p>
+    <p><strong>Email: </strong> {{ app.user.email}} </p>
+            <p><strong>Profession: </strong> {{ app.user.profession}} </p>
+
+
+
+        {% endif %}
+
+
+        <td ><a href="{{ path('modifieu',{'id':app.user.id}) }}"  class="btn btn-primary">Modifier Mon Profil</a></td>
+
+
+
+</form>
+
+
+
+{% endblock %}
+
+{% block footer %}
+{% endblock %}

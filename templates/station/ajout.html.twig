@@ -1,0 +1,101 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+    Ajouter Station
+{% endblock %}
+
+{% block content %}
+
+
+
+
+
+    {{ form_start(form , {attr: {'novalidate': 'novalidate'}} ) }}
+    <div class="main-panel">
+        <h1>Ajouter Une Station</h1>
+
+
+        <div class="form-group">
+
+            <LABEL>Gouvernerat*:</LABEL>
+            {{ form_widget(form.gouv, {'attr':{'class':'form-control' }})}}
+
+            <div class="alert alert-warning" role="alert">
+                {{form_errors(form.gouv)}}
+            </div>
+
+        </div>
+
+        <div class="form-group">
+
+            <LABEL>Ss*:</LABEL>
+            {{ form_widget(form.ss, {'attr':{'class':'form-control' }})}}
+
+            <div class="alert alert-warning" role="alert">
+                {{form_errors(form.ss)}}
+            </div>
+
+        </div>
+
+        <div class="form-group">
+
+            <LABEL>Adresse*:</LABEL>
+            {{ form_widget(form.adresse, {'attr':{'class':'form-control' }})}}
+
+            <div class="alert alert-warning" role="alert">
+                {{form_errors(form.adresse)}}
+            </div>
+
+        </div>
+
+        <div class="form-group">
+
+            <LABEL>Localite*:</LABEL>
+            {{ form_widget(form.localite, {'attr':{'class':'form-control' }})}}
+
+            <div class="alert alert-warning" role="alert">
+                {{form_errors(form.localite)}}
+            </div>
+
+        </div>
+
+        <div class="form-group">
+
+            <LABEL>Longitude*:</LABEL>
+            {{ form_widget(form.longitude, {'attr':{'class':'form-control' }})}}
+
+            <div class="alert alert-warning" role="alert">
+                {{form_errors(form.longitude)}}
+            </div>
+
+        </div>
+
+        <div class="form-group">
+
+            <LABEL>Latitude*:</LABEL>
+            {{ form_widget(form.latitude, {'attr':{'class':'form-control' }})}}
+
+            <div class="alert alert-warning" role="alert">
+                {{form_errors(form.latitude)}}
+            </div>
+
+        </div>
+
+
+
+        {#   <div class="form-group">
+        <label>Libelle</label>
+        <input type="text" class="form-control" id="libelle" placeholder="Entrez le libelle de la categorie">
+    </div>#}
+
+        <input type="submit" value="Ajouter Station" class="btn btn-danger">
+        <a href="{{ path('affichest') }}"><input type="button" value="Liste Des Stations" class="btn btn-danger"></a>
+    </div>
+
+
+    {{ form_end(form) }}
+
+
+
+
+{% endblock %}
